@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ec2-cluster
+spec:
+  destination:
+    name: ''
+    namespace: 'default'
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ./ec2-cluster 
+    repoURL: 'https://github.com/ashraf-gb/eks-ec2-clusterapi-gitops.git'
+    targetRevision: HEAD
+  project: default #You can give a project name here
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
